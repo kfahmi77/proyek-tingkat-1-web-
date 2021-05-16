@@ -1,0 +1,265 @@
+$maincolor: hsl(25, 34%, 33%);
+$mainhovercolor: hsl(25, 60%, 40%);
+$pmaincolor: white;
+$psecondcolor: black;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+a,
+li {
+  list-style: none;
+  text-decoration: none;
+  color: $psecondcolor;
+}
+
+img {
+  max-width: 100%;
+}
+
+p {
+  line-height: 1.65;
+}
+
+.main-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.card {
+  border: 1px solid $maincolor;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 hsla(0, 0%, 0%, 0.2);
+  padding: 2rem;
+}
+
+table {
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header {
+  grid-area: header;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 3px solid $psecondcolor;
+  margin-bottom: 2rem;
+  .logo {
+    margin-left: 2rem;
+    width: 8rem;
+    border-radius: 1rem;
+  }
+
+  .navbar {
+    display: flex;
+    margin-right: 20px;
+  }
+}
+
+.link {
+  color: $pmaincolor;
+  background-color: $maincolor;
+  margin: 10px;
+  padding: 15px 30px;
+  border-radius: 10px;
+  &:hover {
+    background-color: $mainhovercolor;
+  }
+}
+
+.main {
+  padding-bottom: 5rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  line-height: 1.65;
+  border-bottom: 3px solid $maincolor;
+
+  .product {
+    grid-area: product;
+    flex-basis: 20%;
+    max-width: 1fr;
+    .thumbnail {
+      width: 100%;
+      border-radius: 1rem;
+    }
+  }
+
+  .desc {
+    grid-area: desc;
+    flex-basis: 45%;
+
+    h2 {
+      padding-bottom: 0.5rem;
+      border-bottom: 0.2rem solid $maincolor;
+    }
+    h3 {
+      font-weight: normal;
+      margin: 0.25rem 0;
+    }
+    ul,
+    li {
+      list-style: disc;
+      margin-bottom: 0.3rem;
+    }
+    .buy {
+      margin-top: 2rem;
+      justify-content: space-between;
+      .buy-link {
+        display: flex;
+        flex-basis: 45%;
+        justify-content: center;
+        .center {
+          margin: auto;
+          // font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  .cart {
+    grid-area: cart;
+    flex-basis: 30%;
+    background-color: hsl(25, 50%, 60%);
+    color: $pmaincolor;
+    h2 {
+      margin: auto;
+      margin-bottom: 0.5rem;
+      border-bottom: 0.2rem solid $pmaincolor;
+    }
+    table,
+    h3 {
+      margin: 1rem 0;
+    }
+    .link {
+      margin: auto;
+      border: 1px solid $pmaincolor;
+    }
+  }
+}
+
+.review {
+  grid-area: review;
+  .link {
+    margin-top: 2rem;
+  }
+  h1 {
+    margin: 2rem;
+  }
+  .review-container {
+    justify-content: space-between;
+    .card {
+      flex-basis: 30%;
+      border-color: $maincolor;
+    }
+  }
+}
+
+.tentang {
+  width: 80%;
+  margin: 0 auto;
+  color: $maincolor;
+  > * {
+    margin: auto;
+  }
+  .title {
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    font-weight: lighter;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+  }
+  .desc {
+    padding: 2rem;
+    border: 0.8rem solid $maincolor;
+    border-radius: 20px;
+    grid-area: 1 / 1 / 8 / 7;
+    h2 {
+      margin-bottom: 2.5rem;
+      font-size: 1.8rem;
+      font-weight: lighter;
+    }
+    p {
+      width: 80%;
+      color: $psecondcolor;
+      text-align: justify;
+      margin-bottom: 2rem;
+    }
+  }
+  .img {
+    grid-area: 2 / 6 / 7 / 12;
+  }
+}
+
+.kontak {
+  width: 80%;
+  margin: 0 auto;
+  color: $maincolor;
+  > * {
+    margin: auto;
+  }
+  .title {
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    font-weight: lighter;
+  }
+}
+
+.identitas {
+  justify-content: space-between;
+  .img {
+    flex-basis: 48%;
+  }
+  .desc {
+    color: $psecondcolor;
+    flex-basis: 48%;
+    display: flex;
+    flex-direction: column;
+    .icon {
+    }
+  }
+}
+
+.footer {
+  grid-area: footer;
+  align-items: center;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  background-color: $maincolor;
+  p {
+    margin: auto;
+    color: $pmaincolor;
+  }
+}
+
+// .grid {
+//   display: grid;
+//   height: 100vh;
+//   grid-template-columns: 1fr 2fr 1fr;
+//   grid-gap: 2rem;
+//   grid-template-areas:
+//     "header   header  header"
+//     "product  desc    cart"
+//     "review   review  review"
+//     "footer   footer  footer";
+// }
+
+@media only screen and (max-width: 360px) {
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+}

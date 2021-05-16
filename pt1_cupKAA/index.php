@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="dist/css/dashboard.css">
   <title>Cup KAA</title>
 </head>
+
 <body>
   <div class="background flex">
     <div class="container">
@@ -15,11 +17,12 @@
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, accusantium a culpa maiores excepturi placeat earum delectus aliquam eaque magnam ullam modi necessitatibus et sunt sed odit nisi. Consequuntur, at.</p>
       <br><br>
       <div class="link-dash">
-        <a href="produk.php" class="link">Produk</a>
+        <a href="produklist.php" class="link">Produk</a>
         <a href="tentang.php" class="link">Tentang</a>
         <a href="kontak.php" class="link">Kontak</a>
       </div>
     </div>
   </div>
 </body>
+
 </html>

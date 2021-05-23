@@ -49,7 +49,7 @@ while ($row = mysqli_fetch_array($ambildata)) {
         </ul>
         <h3>Deskripsi</h3>
         <p><?php echo $row['deskripsi']; ?></p>
-        <h3><?php echo $row['harga']; ?></h3>
+        <h3><?php echo rupiah($row['harga']); ?></h3>
         <div class="buy flex">
           <a href="produk.php?page=produk&action=add&idproduk=<?php echo $row['idproduk']; ?>" class="buy-link link"> <span class="center">Masukan Keranjang</span> </a>
           <a href="" class="buy-link link"> <span class="center">Beli Langsung</span></a>
@@ -88,7 +88,7 @@ while ($row = mysqli_fetch_array($ambildata)) {
                 $subtotal = $_SESSION['cart'][$row['idproduk']]['quantity'] * $row['harga'];
                 $totalprice += $subtotal;
                 ?>
-                <td><?php echo $row['harga']; ?></td>
+                <td><?php echo rupiah($row['harga']); ?></td>
                 <td><a href="produk.php?page=produk&action=remove&idproduk=<?php echo $row['idproduk']; ?>">hapus</a></td>
               <?php
             }
@@ -118,7 +118,7 @@ while ($row = mysqli_fetch_array($ambildata)) {
           </tr>
       </table>
       <br>
-      <h3>Jumlah : Rp <?php echo $totalprice; ?></h3><br>
+      <h3>Jumlah : Rp <?php echo rupiah($totalprice); ?></h3><br>
       <a href="konfirmasi.php" class="link"> Konfirmasi Pembelian </a>
     </div>
 

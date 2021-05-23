@@ -26,7 +26,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     </tr>
     <tr>
       <td>
-        <?php echo $row['harga'];
+        <?php echo rupiah($row['harga']);
         ?></td>
     </tr>
     </table>

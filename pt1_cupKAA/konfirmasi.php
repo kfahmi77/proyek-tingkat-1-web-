@@ -63,7 +63,7 @@ if (isset($_GET['action']) && $_GET['action'] == "remove") {
                 $subtotal = $_SESSION['cart'][$row['idproduk']]['quantity'] * $row['harga'];
                 $totalprice += $subtotal;
                 ?>
-                <td><?php echo $row['harga']; ?></td>
+                <td><?php echo rupiah($row['harga']); ?></td>
           <?php }
           }
         }
@@ -72,11 +72,12 @@ if (isset($_GET['action']) && $_GET['action'] == "remove") {
       <br>
       <div class="pengiriman flex">
         <p style="flex:70%;">Pengiriman</p>
-        <p style="flex:30%;"><?php echo $ongkir = 20000; ?></p>
+        <p style="flex:30%;"><?php $ongkir = 20000;
+                              echo rupiah($ongkir) ?></p>
       </div>
       <br>
-      <h3>Jumlah : Rp<?php echo $totalprice += $ongkir;
-                      ?></h3><br>
+      <h3>Jumlah :<?php echo rupiah($totalprice += $ongkir);
+                  ?></h3><br>
     </div>
 
     <form action="" class="flex form">

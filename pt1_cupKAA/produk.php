@@ -7,13 +7,23 @@ if (isset($_GET['action']) && $_GET['action'] == "add") {
   if (isset($_SESSION['cart'][$id])) {
     $_SESSION['cart'][$id]['quantity']++;
   } else {
-    $sql_p = "SELECT * FROM produk WHERE idproduk={$id}";
+    $sql_p = "SELECT * FROM produk WHERE idproduk='$id'";
     $query_p = mysqli_query($conn, $sql_p);
     if (mysqli_num_rows($query_p) != 0) {
       $row_p = mysqli_fetch_array($query_p);
       $_SESSION['cart'][$row_p['idproduk']] = array("quantity" => 1, "harga" => $row_p['harga']);
     } else {
       $message = "Product ID is invalid";
+    }
+  }
+}
+if (isset($_GET['action']) && $_GET['action'] == "remove") {
+  if (!empty($_SESSION["cart"])) {
+    foreach ($_SESSION["cart"] as $k => $v) {
+      if ($_GET["idproduk"] == $k)
+        unset($_SESSION["cart"][$k]);
+      if (empty($_SESSION["cart"]))
+        unset($_SESSION["cart"]);
     }
   }
 }
@@ -79,6 +89,7 @@ while ($row = mysqli_fetch_array($ambildata)) {
                 $totalprice += $subtotal;
                 ?>
                 <td><?php echo $row['harga']; ?></td>
+                <td><a href="produk.php?page=produk&action=remove&idproduk=<?php echo $row['idproduk']; ?>">hapus</a></td>
               <?php
             }
           } else {
@@ -108,7 +119,7 @@ while ($row = mysqli_fetch_array($ambildata)) {
       </table>
       <br>
       <h3>Jumlah : Rp <?php echo $totalprice; ?></h3><br>
-      <a href="" class="link"> Konfirmasi Pembelian </a>
+      <a href="konfirmasi.php" class="link"> Konfirmasi Pembelian </a>
     </div>
 
     </div>

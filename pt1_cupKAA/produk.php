@@ -33,7 +33,6 @@ $id = $_GET['idproduk'];
 $ambildata = mysqli_query($conn, "SELECT * FROM produk, jenis_produk where produk.idproduk=jenis_produk.idjenis AND idproduk='$id'");
 while ($row = mysqli_fetch_array($ambildata)) {
 ?>
-  ?>
   <div class="main-container">
     <div class="flex main">
       <div class="product">
@@ -101,11 +100,6 @@ while ($row = mysqli_fetch_array($ambildata)) {
             <?php
           }
             ?>
-
-
-            <tr>
-              <td colspan="3"><a href="index.php?page=cart">Go To Cart</a></td>
-            </tr>
           <?php
         } else {
           ?>
@@ -118,7 +112,7 @@ while ($row = mysqli_fetch_array($ambildata)) {
           </tr>
       </table>
       <br>
-      <h3>Jumlah : Rp <?php echo rupiah($totalprice); ?></h3><br>
+      <h3>Jumlah : <?php echo rupiah($totalprice); ?></h3><br>
       <a href="konfirmasi.php" class="link"> Konfirmasi Pembelian </a>
     </div>
 

@@ -2,31 +2,6 @@
 require_once "view/header.php";
 include "script/koneksi.php";
 session_start();
-if (isset($_GET['action']) && $_GET['action'] == "add") {
-  $id = intval($_GET['idproduk']);
-  if (isset($_SESSION['cart'][$id])) {
-    $_SESSION['cart'][$id]['quantity']++;
-  } else {
-    $sql_p = "SELECT * FROM produk WHERE idproduk='$id'";
-    $query_p = mysqli_query($conn, $sql_p);
-    if (mysqli_num_rows($query_p) != 0) {
-      $row_p = mysqli_fetch_array($query_p);
-      $_SESSION['cart'][$row_p['idproduk']] = array("quantity" => 1, "harga" => $row_p['harga']);
-    } else {
-      $message = "Product ID is invalid";
-    }
-  }
-}
-if (isset($_GET['action']) && $_GET['action'] == "remove") {
-  if (!empty($_SESSION["cart"])) {
-    foreach ($_SESSION["cart"] as $k => $v) {
-      if ($_GET["idproduk"] == $k)
-        unset($_SESSION["cart"][$k]);
-      if (empty($_SESSION["cart"]))
-        unset($_SESSION["cart"]);
-    }
-  }
-}
 ?>
 
 <div class="konfirmasi flex">
@@ -64,7 +39,22 @@ if (isset($_GET['action']) && $_GET['action'] == "remove") {
                 $totalprice += $subtotal;
                 ?>
                 <td><?php echo rupiah($row['harga']); ?></td>
-          <?php }
+          <?php
+              if (isset($_POST['submit'])) {
+                $nohape = 62895345860230;
+                $text = "Halo kak saya ingin memesan produk:";
+                $nproduk = $row['namaproduk'];
+                $jml = $_SESSION['cart'][$row['idproduk']]['quantity'];
+                $ongkir = 20000;
+                $total = rupiah($totalprice += $ongkir);
+                $nama = $_POST['nama'];
+                $alamat = $_POST['alamat'];
+                $pengiriman = $_POST['pengiriman'];
+                $catatan = $_POST['catatan'];
+
+                echo "<script>window.location = 'https://api.whatsapp.com/send?phone=$nohape&text=$text%0A%0ANama Produk :$nproduk%0AJumlah :$jml%0ATotal : $total%0ANama Pembeli:$nama%0AAlamat : $alamat%0APengiriman : $pengiriman%0ACatatan : $catatan'</script>";
+              }
+            }
           }
         }
           ?>
@@ -80,24 +70,23 @@ if (isset($_GET['action']) && $_GET['action'] == "remove") {
                   ?></h3><br>
     </div>
 
-    <form action="" class="flex form">
-      <input class="input" type="text" name="nama" placeholder="Nama" required>
-      <input class="input" type="text" name="alamat" placeholder="Alamat" required>
+    <form action="" class="flex form" method="post">
+      <input class="input" type="text" name="nama" placeholder="nama" required>
+      <input class="input" type="text" name="alamat" placeholder="alamat" required>
       <select class="input" name="pengiriman" id="pengiriman" required>
-        <option ue="langsung">Ambil Langsung</option>
+        <option value="langsung">Ambil Langsung</option>
         <option value="gojek">Gojek</option>
       </select>
-      <textarea class="input" type="text" placeholder="Catatan" style="resize: none;"></textarea>
+      <textarea class="input" type="text" placeholder="catatan" style="resize: none;" name="catatan"></textarea>
       <!-- ini yang hidden untuk harga total -->
-      <input type="text" hidden>
-      <input type="button" value="Pesan Kopi" class="link">
+      <input type=" text" hidden name="no_wa" value="62895345860230">
+      <input type="submit" value="Pesan Kopi" class="link" name="submit">
     </form>
   </div>
 
-
-
 </div>
-
+<?php
+?>
 <?php
 require_once "view/footer.php";
 ?>
